@@ -1,0 +1,94 @@
+{
+ "code": "Ontario Building Code 2024, Subsection 3.1.13 (Interior Finish)",
+ "table_3_1_13_2_wall_ceiling_finishes": [
+  {
+   "location": "Group A, Division 1 occupancies (incl. doors, skylights, glazing, light diffusers and lenses)",
+   "max_fsr_sprinklered": 150,
+   "max_fsr_not_sprinklered": 75
+  },
+  {
+   "location": "Group B occupancies",
+   "max_fsr_sprinklered": 150,
+   "max_fsr_not_sprinklered": 75
+  },
+  {
+   "location": "Exits",
+   "max_fsr_sprinklered": 25,
+   "max_fsr_not_sprinklered": 25
+  },
+  {
+   "location": "Lobbies described in Sentence 3.4.4.2.(2)",
+   "max_fsr_sprinklered": 25,
+   "max_fsr_not_sprinklered": 25
+  },
+  {
+   "location": "Covered vehicular passageways (except heavy-timber roof assemblies in the passageways)",
+   "max_fsr_sprinklered": 25,
+   "max_fsr_not_sprinklered": 25
+  },
+  {
+   "location": "Vertical service spaces",
+   "max_fsr_sprinklered": 25,
+   "max_fsr_not_sprinklered": 25
+  },
+  {
+   "location": "All other rooms and spaces (default)",
+   "max_fsr_sprinklered": 150,
+   "max_fsr_not_sprinklered": 150
+  }
+ ],
+ "general_cap": "3.1.13.2.(1): flame-spread rating of interior wall and ceiling finishes shall not exceed 150 unless Table 3.1.13.2 or another article requires less.",
+ "corridor_article_3_1_13_6": {
+  "wall": {
+   "not_sprinklered": "75 (or the waiver option: 25 on the upper half of the wall and 150 on the lower half)",
+   "sprinklered": "150"
+  },
+  "ceiling": {
+   "not_sprinklered": "25",
+   "sprinklered": "150"
+  }
+ },
+ "corridor_scope": "3.1.13.6 applies to public corridors, corridors used by the public in assembly occupancies, and corridors serving classrooms; the ratings apply to the occupancies in the corridor as well as the corridor itself.",
+ "high_building_table_3_1_13_7": [
+  {
+   "location": "Exit stairways, vestibules to exit stairs, lobbies per 3.4.4.2.(2)",
+   "fsr_wall_ceiling_floor": "25 / 25 / 25",
+   "sdc_wall_ceiling_floor": "50 / 50 / 50"
+  },
+  {
+   "location": "Corridors not within suites",
+   "fsr_wall_ceiling_floor": "see 3.1.13.2 / 3.1.13.6 / floor 300",
+   "sdc_wall_ceiling_floor": "100 / 50 / 500"
+  },
+  {
+   "location": "Elevator cars",
+   "fsr_wall_ceiling_floor": "75 / 75 / 300",
+   "sdc_wall_ceiling_floor": "450 / 450 / 450"
+  },
+  {
+   "location": "Elevator vestibules",
+   "fsr_wall_ceiling_floor": "25 / 25 / 300",
+   "sdc_wall_ceiling_floor": "100 / 100 / 300"
+  },
+  {
+   "location": "Service spaces and service rooms",
+   "fsr_wall_ceiling_floor": "25 / 25 / 25",
+   "sdc_wall_ceiling_floor": "50 / 50 / 50"
+  },
+  {
+   "location": "Other locations and elements",
+   "fsr_wall_ceiling_floor": "see 3.1.13.2 / 3.1.13.6 / floor No Limit",
+   "sdc_wall_ceiling_floor": "300 / 50 / No Limit"
+  }
+ ],
+ "high_building_note": "3.1.13.7.(2): except for Group B buildings and elevator cars, Table 3.1.13.7 need not be met if the building is sprinklered.",
+ "related_rules": [
+  "Doors (other than in Group A Div. 1): need not meet Table 3.1.13.2 if FSR <= 200 - 3.1.13.2.(2). Doors within a dwelling unit are exempt - (3).",
+  "Area allowance - 3.1.13.2.(4): up to 10% of wall area and 10% of ceiling area of a finish required to be < 150 may be up to 150; for 3.4.4.2.(2) lobbies, up to 25% of wall area may be 150.",
+  "Bathrooms in residential suites: FSR <= 200 - 3.1.13.3.(1).",
+  "Light diffusers and lenses (all occupancies except A-1): may exceed the table if FSR <= 250 and smoke developed classification <= 600 (CAN/ULC-S102.2), subject to conditions - 3.1.13.4.(1).",
+  "Exterior exit passageways (only means of egress): wall/ceiling FSR <= 25, with 150 permitted for <= 10% of wall and ceiling area - 3.1.13.10.(1).",
+  "Elevator cars: walls/ceilings FSR <= 75; wall, ceiling and floor smoke developed classification <= 450 - 3.1.13.11.",
+  "Outside high buildings there is no general smoke-developed table in 3.1.13; SDC limits appear only in specific articles (light diffusers 600, elevator cars 450)."
+ ]
+}

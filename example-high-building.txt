@@ -1,0 +1,6 @@
+High building, exit stairway:
+
+$ python3 flame_spread_checker.py --location high-exit-stair
+
+High building (Table 3.1.13.7) - Exit stairways, vestibules to exit stairs, lobbies per 3.4.4.2.(2): FSR wall/ceiling/floor = 25 / 25 / 25; SDC wall/ceiling/floor = 50 / 50 / 50
+Note: except for Group B buildings and elevator cars, this table need not be met if the building is sprinklered (3.1.13.7.(2)).

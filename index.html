@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ontario Flame-Spread Rating Checker | Dust 2 Engineering Inc.</title>
+<style>
+:root{color-scheme:dark}
+body{background:#0e1116;color:#e6e9ee;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;padding:24px;line-height:1.55}
+.wrap{max-width:860px;margin:0 auto}
+h1{font-size:1.55rem;line-height:1.25;margin:.2em 0 .1em}
+h2{font-size:1.15rem;margin-top:1.6em;color:#ffd479}
+.sub{color:#9fb0c3;margin:.2em 0 1.2em}
+.card{background:#161b22;border:1px solid #2b333f;border-radius:12px;padding:18px;margin:14px 0}
+label{display:block;margin:.7em 0 .25em;color:#c8d3e0;font-size:.95rem}
+input,select,textarea{width:100%;box-sizing:border-box;background:#0e1116;color:#e6e9ee;border:1px solid #39424f;border-radius:8px;padding:9px;font-size:1rem}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:640px){.row{grid-template-columns:1fr}}
+button{background:#f0a832;color:#14100a;border:0;border-radius:8px;padding:11px 18px;font-size:1rem;font-weight:600;cursor:pointer;margin-top:14px}
+pre{background:#0a0d11;border:1px solid #2b333f;border-radius:10px;padding:14px;white-space:pre-wrap;word-break:break-word;font-size:.92rem}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{border:1px solid #2b333f;padding:6px 8px;text-align:left}
+th{background:#1b212b}
+.small{color:#9fb0c3;font-size:.88rem}
+a{color:#7cc4ff}
+.pass{color:#7ee2a0}.fail{color:#ff9c9c}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Ontario Flame-Spread Rating Checker</h1>
+<p class="sub">OBC 2024 Subsection 3.1.13 — maximum flame-spread ratings for interior finishes, corridors and high buildings.</p>
+<div class="card">
+<label>Location / element</label>
+<select id="loc">
+<option value="a1">Group A, Division 1 occupancy</option>
+<option value="group-b">Group B occupancy</option>
+<option value="exit" selected>Exit</option>
+<option value="lobby">Lobby per 3.4.4.2.(2)</option>
+<option value="vehicular">Covered vehicular passageway</option>
+<option value="vservice">Vertical service space</option>
+<option value="other">Any other room or space (default)</option>
+<option value="cwall">Public corridor — wall finish (3.1.13.6)</option>
+<option value="cceil">Public corridor — ceiling finish (3.1.13.6)</option>
+<option value="h-exit">High building — exit stair / vestibule / lobby</option>
+<option value="h-corr">High building — corridor not within a suite</option>
+<option value="h-car">High building — elevator car</option>
+<option value="h-vest">High building — elevator vestibule</option>
+<option value="h-serv">High building — service space / room</option>
+<option value="h-other">High building — other locations</option>
+</select>
+<label>Building / floor area sprinklered?</label>
+<select id="spr"><option value="no" selected>No</option><option value="yes">Yes</option></select>
+<button onclick="calc()">Check maximum flame-spread rating</button>
+<pre id="out">Pick a location and click Check.</pre></div>
+<div class="card"><h2>Rules designers miss</h2>
+<p class="small">Doors (outside Group A Div. 1) escape Table 3.1.13.2 if their FSR is ≤ 200; doors inside a dwelling unit are exempt. Up to 10% of a wall or ceiling that must be under 150 may still be 150 (25% of wall area in 3.4.4.2.(2) lobbies). Light diffusers may reach FSR 250 with a smoke developed classification ≤ 600. Bathrooms in residential suites: FSR ≤ 200. And outside high buildings, Subsection 3.1.13 has no general smoke table — SDC limits live in specific articles only.</p></div>
+<p class="small">Free tool by <b>Dust 2 Engineering Inc.</b>, Mississauga, Ontario — building permit
+drawings for restaurants and small commercial projects across the GTA, stamped by an Ontario P.Eng.
+Flat rate $3,500–$5,000. Questions or a project to discuss: open an issue in this repository.</p>
+</div>
+<script>
+const T2={a1:[150,75], 'group-b':[150,75], exit:[25,25], lobby:[25,25], vehicular:[25,25], vservice:[25,25], other:[150,150]};
+const CORR={cwall:{s:'150', n:'75 (or waiver: 25 upper half / 150 lower half)'}, cceil:{s:'150', n:'25'}};
+const HIGH={'h-exit':['25 / 25 / 25','50 / 50 / 50'],'h-corr':['see 3.1.13.2 / 3.1.13.6 / floor 300','100 / 50 / 500'],'h-car':['75 / 75 / 300','450 / 450 / 450'],'h-vest':['25 / 25 / 300','100 / 100 / 300'],'h-serv':['25 / 25 / 25','50 / 50 / 50'],'h-other':['see 3.1.13.2 / 3.1.13.6 / floor No Limit','300 / 50 / No Limit']};
+function calc(){
+ const loc=document.getElementById('loc').value, spr=document.getElementById('spr').value==='yes';
+ let out='';
+ if(T2[loc]) out='Maximum flame-spread rating: '+(spr?T2[loc][0]:T2[loc][1])+' (Table 3.1.13.2, '+(spr?'sprinklered':'not sprinklered')+')';
+ else if(CORR[loc]) out='Maximum flame-spread rating: '+(spr?CORR[loc].s: CORR[loc].n)+' (Article 3.1.13.6, '+(spr?'sprinklered':'not sprinklered')+')';
+ else { const h=HIGH[loc]; out='High building, Table 3.1.13.7 — FSR wall/ceiling/floor: '+h[0]+' | SDC wall/ceiling/floor: '+h[1]+'\nNote: except for Group B buildings and elevator cars, this table need not be met if the building is sprinklered (3.1.13.7.(2)).'; }
+ document.getElementById('out').textContent=out;
+}
+</script>
+</body>
+</html>

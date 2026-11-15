@@ -1,0 +1,11 @@
+Exit finish, any sprinkler status:
+
+$ python3 flame_spread_checker.py --location exit
+
+Exits: maximum flame-spread rating 25 (not sprinklered, Table 3.1.13.2)
+
+Public corridor wall, unsprinklered:
+
+$ python3 flame_spread_checker.py --location corridor-wall --sprinklered no
+
+Corridor wall finish (3.1.13.6), not sprinklered: maximum flame-spread rating 75 (or the waiver option: 25 on the upper half of the wall and 150 on the lower half)
